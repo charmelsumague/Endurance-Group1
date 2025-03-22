@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>We Express Polynomials</title>
+
+	<script type="text/JavaScript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js?ver=1.4.2"></script>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+	 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+
+	<style type="text/css">
+	
+		* {
+		margin: 0;
+		padding: 0;
+		}
+
+	body, html {
+		height: 100%;
+		}
+
+		#myCanvas {
+		cursor: crosshair;
+    	position: fixed;
+		}
+
+		th {text-align: center;}
+	</style>
+
+</head>
+<body style="background-color: #4F7942;">
+
+<br>
+<br>
+<hr>
+
+<div class="container mt-3">
+  
+  <div class="table-responsive">
+    <table class="table table-borderless">
+      <thead class="table-dark">
+        <tr>
+          <th style="width:33.33%">PROBLEM ONE</th>
+          <th style="width:33.33%">PROBLEM TWO</th>
+          <th style="width:33.33%">PROBLEM THREE</th>
+        </tr>
+
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+          	Simone is planning to buy a plot of land. The length of the land is 5 meters more than thrice the width. If the area of the land is 90 square meters, write a polynomial expression using the situation and solve for the length and width of the land. 
+          </td>
+          <td>
+          	A company is selling a product for x+2 dollars. Write a polynomial expression for the total revenue if they sell 25 products per day. 
+          </td>
+          <td>
+          	Kimi and Psalm are planning to build a restaurant that is triangle-shaped. If the triangle's base was x+1 meters, and the height is x meters. What would be the polynomial expression for the area of the triangle?
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<span style="font-family: Comic Sans MS; color: ghostwhite; font-size: 30px; "><center> WRITE YOUR SOLUTIONS BELOW:</center> </span>
+
+	<canvas id="myCanvas">
+		Arithmetic Sequence
+	</canvas>
+
+	<script type="text/javascript">
+		window.onload = function() {
+	var myCanvas = document.getElementById("myCanvas");
+	var ctx = myCanvas.getContext("2d");
+    
+    // Fill Window Width and Height
+    myCanvas.width = window.innerWidth;
+	myCanvas.height = window.innerHeight;
+	
+	// Set Background Color
+    ctx.fillStyle="#4F7942";
+    ctx.fillRect(0,0,myCanvas.width,myCanvas.height);
+	
+    // Mouse Event Handlers
+	if(myCanvas){
+		var isDown = false;
+		var canvasX, canvasY;
+		ctx.lineWidth = 5;
+		
+		$(myCanvas)
+		.mousedown(function(e){
+			isDown = true;
+			ctx.beginPath();
+			canvasX = e.pageX - myCanvas.offsetLeft;
+			canvasY = e.pageY - myCanvas.offsetTop;
+			ctx.moveTo(canvasX, canvasY);
+		})
+		.mousemove(function(e){
+			if(isDown !== false) {
+				canvasX = e.pageX - myCanvas.offsetLeft;
+				canvasY = e.pageY - myCanvas.offsetTop;
+				ctx.lineTo(canvasX, canvasY);
+				ctx.strokeStyle = "#FFF";
+				ctx.stroke();
+			}
+		})
+		.mouseup(function(e){
+			isDown = false;
+			ctx.closePath();
+		});
+	}
+	
+	// Touch Events Handlers
+	draw = {
+		started: false,
+		start: function(evt) {
+
+			ctx.beginPath();
+			ctx.moveTo(
+				evt.touches[0].pageX,
+				evt.touches[0].pageY
+			);
+
+			this.started = true;
+
+		},
+		move: function(evt) {
+
+			if (this.started) {
+				ctx.lineTo(
+					evt.touches[0].pageX,
+					evt.touches[0].pageY
+				);
+
+				ctx.strokeStyle = "#000";
+				ctx.lineWidth = 5;
+				ctx.stroke();
+			}
+
+		},
+		end: function(evt) {
+			this.started = false;
+		}
+	};
+	
+	// Touch Events
+	myCanvas.addEventListener('touchstart', draw.start, false);
+	myCanvas.addEventListener('touchend', draw.end, false);
+	myCanvas.addEventListener('touchmove', draw.move, false);
+	
+	// Disable Page Move
+	document.body.addEventListener('touchmove',function(evt){
+		evt.preventDefault();
+	},false);
+};
+	</script>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark	 fixed-top"> 
+
+<div class="container-fluid"> 
+
+<a class="navbar-brand" href="#">Math Antics Jr's</a> 
+
+<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls=" 
+navbarNav" aria-expanded="false" aria-label="Toggle navigation"> 
+
+<span class="navbar-toggler-icon"></span> 
+</button> 
+
+<div class="collapse navbar-collapse" id="navbarNav"> 
+
+<ul class="navbar-nav"> 
+	<li class="nav-item"> 
+		<a class="nav-link active" aria-current="page" href="homepage.html">Home</a> 
+	</li> 
+	<li class="nav-item"> 
+		<a class="nav-link" href="arithmetic.html">Arithmetic Sequence</a> 
+	</li> 
+	<li class="nav-item"> 
+		<a class="nav-link" href="geometric.html">Geometric Sequence</a> 
+	</li> 
+	<li class="nav-item"> 
+		<a class="nav-link" href="harmonic.html">Harmonic Sequence</a> 
+	</li>
+	<li class="nav-item"> 
+		<a class="nav-link" href="fibonacci.html">Fibonacci Sequence</a> 
+	</li>  
+	<li class="nav-item"> 
+		<a class="nav-link" href="polynomialexp.html">Polynomial Expressions</a> 
+	</li> 
+	<li class="nav-item"> 
+		<a class="nav-link" href="polynomialeq.html">Polynomial Equations</a> 
+	</li>
+	<li>
+		<a href="answers.html" class="btn btn-primary">ANSWER KEYS</a>
+	</li>
+</ul> 
+</div>
+</div>
+
+</body>
+</html>
+</body>
+</html>
